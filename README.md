@@ -83,6 +83,8 @@ If there is no problem, you can copy the host's SSH public key to the container 
 Install the "Remote - SSH", "Remote - SSH: Editing Configuration Files
 " and "Remote Explorer" extensions in VSCode, then press "Ctrl+Shift+P" to popup the command palette, select "Remote-SSH: Connect to host...", and then follow the prompts to connect to the container you just ran and select "Open Folder" to open your project folder.
 
+![Screenshot](./screenshot.png)
+
 Finally install extensions in the "Extensions" of VSCode according to your needs (some extensions must run on the remote, such as the `rust-analyzer`, so installing it locally in VSCode will not work).
 
 > During development, the container must remain running.
