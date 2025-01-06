@@ -41,7 +41,7 @@ This method is actually similar to method 2 above, but because this Docker conta
 1. Pull the image using Podman/Docker:
 
 ```bash
-$ docker pull hemashushu/vscode-bridge-for-nixos-rust
+$ docker pull hemashushu/vscode-bridge-for-nixos
 ```
 
 > Note: I used [podman](https://podman.io/) instead of Docker in NixOS, but because the commands are the same, I still write the commands in the following examples as "docker".
