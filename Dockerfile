@@ -4,24 +4,32 @@ FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Update repo first
-RUN apt update
+RUN apt update && apt upgrade -y
 
 # Install base development tools
-RUN apt install build-essential gdb -y
+RUN apt install build-essential -y
+
+# Install common development tools
+RUN apt install libncurses-dev pkg-config autoconf automake libtool ninja-build cmake meson \
+    musl musl-tools \
+    clang lld \
+    valgrind gdb \
+    file -y
 
 # Install essential tools
-RUN apt install openssh-server vim git -y
+RUN apt install wget vim git -y
 
-# Install other optional packages
-RUN apt install iproute2 iputils-ping -y
+# Install common packages
+RUN apt install openssh-server iproute2 iputils-ping -y
+
+# Install common languages
+RUN apt install rustup golang nodejs npm pipx default-jdk maven -y
 
 # Install Rust toolchain
-RUN apt install rustup -y \
-    && rustup default stable
+RUN rustup default stable
 
-# Add some optional features, such as the MUSL library
-RUN apt install musl-tools -y \
-    && rustup target install x86_64-unknown-linux-musl
+# Install Rust additional targets
+RUN rustup target install x86_64-unknown-linux-musl
 
 # Change the work directory
 WORKDIR /root
@@ -41,5 +49,8 @@ RUN sed -i 's/#Port 22/Port 3322/' /etc/ssh/sshd_config
 # Port
 EXPOSE 3322
 
-# Start `sshd` service
-CMD ["/usr/sbin/sshd", "-D"]
+# Start `sshd` service in foreground
+# CMD ["/usr/sbin/sshd", "-D"]
+
+# Start sshd and bash
+CMD /usr/sbin/sshd ; /usr/bin/bash

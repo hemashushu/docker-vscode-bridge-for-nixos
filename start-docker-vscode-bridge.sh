@@ -1,12 +1,10 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 mkdir -p /home/yang/bridge.ssh
 mkdir -p /home/yang/bridge.cargo
 mkdir -p /home/yang/bridge.vscode-server
 
 echo "VSCode Bridge for NixOS"
 echo "----------------------------"
-echo ""
-echo "Some useful commands:"
 echo ""
 echo "- Connect to this container:"
 echo "  $ ssh -p 3322 root@localhost"
@@ -15,17 +13,19 @@ echo ""
 echo "- Copy SSH public key to this container:"
 echo "  $ ssh-copy-id -p 3322 root@localhost"
 echo ""
-echo "- Stop this container:"
-echo "  $ docker stop vscode-bridge"
+echo ">> Please keep the current container running"
+echo ">> when you use VSCode Remote to connect to the current container."
 echo ""
 
 docker run \
+  -it \
   --rm \
-  --mount type=bind,source="/home/yang/projects",target="/root/projects" \
   --mount type=bind,source="/home/yang/bridge.ssh",target="/root/.ssh" \
   --mount type=bind,source="/home/yang/bridge.cargo",target="/root/.cargo" \
   --mount type=bind,source="/home/yang/bridge.vscode-server",target="/root/.vscode-server" \
+  --mount type=bind,source="/home/yang/projects",target="/root/projects" \
+  --mount type=bind,source="/run/media/yang/linux_ext/EXT",target="/root/EXT" \
   --name vscode-bridge \
   --network host \
   --cap-add=NET_RAW \
-  vscode-bridge-for-nixos
+  vscode-bridge-for-nixos:2.0.0
