@@ -51,10 +51,10 @@ docker pull hemashushu/vscode-bridge-for-nixos:2.0.0
 docker run \
   -it \
   --rm \
-  --mount type=bind,source="/home/yang/projects",target="/root/projects" \
-  --mount type=bind,source="/home/yang/bridge.ssh",target="/root/.ssh" \
-  --mount type=bind,source="/home/yang/bridge.vscode-server",target="/root/.vscode-server" \
-  --mount type=bind,source="/home/yang/bridge.cargo",target="/root/.cargo" \
+  --mount type=bind,source="${HOME}/bridge.ssh",target="/root/.ssh" \
+  --mount type=bind,source="${HOME}/bridge.cargo",target="/root/.cargo" \
+  --mount type=bind,source="${HOME}/bridge.vscode-server",target="/root/.vscode-server" \
+  --mount type=bind,source="${HOME}/projects",target="/root/projects" \
   --name vscode-bridge \
   --network host \
   --cap-add=NET_RAW \
@@ -99,13 +99,7 @@ When you have finished development and debugging, you can execute command `docke
 - Vim, Git, SSH
 - Rust, Go, Nodejs, Python, JDK
 
-## Rebuilding the image
-
-You can rebuild this image locally using the command:
-
-`docker build -t vscode-bridge-for-nixos:2.0.0 .`
-
 ## Repository
 
-- https://hub.docker.com/r/hemashushu/docker-vscode-bridge-for-nixos
+- https://hub.docker.com/r/hemashushu/vscode-bridge-for-nixos
 - https://github.com/hemashushu/docker-vscode-bridge-for-nixos

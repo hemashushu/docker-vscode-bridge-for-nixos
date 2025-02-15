@@ -20,11 +20,11 @@ echo ""
 docker run \
   -it \
   --rm \
-  --mount type=bind,source="/home/yang/bridge.ssh",target="/root/.ssh" \
-  --mount type=bind,source="/home/yang/bridge.cargo",target="/root/.cargo" \
-  --mount type=bind,source="/home/yang/bridge.vscode-server",target="/root/.vscode-server" \
-  --mount type=bind,source="/home/yang/projects",target="/root/projects" \
-  --mount type=bind,source="/run/media/yang/linux_ext/EXT",target="/root/EXT" \
+  --mount type=bind,source="${HOME}/bridge.ssh",target="/root/.ssh" \
+  --mount type=bind,source="${HOME}/bridge.cargo",target="/root/.cargo" \
+  --mount type=bind,source="${HOME}/bridge.vscode-server",target="/root/.vscode-server" \
+  --mount type=bind,source="${HOME}/projects",target="/root/projects" \
+  --mount type=bind,source="${HOME}/EXT",target="/root/EXT" \
   --name vscode-bridge \
   --network host \
   --cap-add=NET_RAW \
