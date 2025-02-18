@@ -1,6 +1,6 @@
 # VSCode Bridge for NixOS
 
-This image is designed to enable development, debugging, and extensions with VSCode running on [the NixOS operating system](https://nixos.org/) just like it running on a general Linux operating system.
+This image enables development, debugging, and extensions with VS Code running on [the NixOS operating system](https://nixos.org/), just as if it were running on a regular Linux operating system.
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=4 orderedList=false} -->
 
